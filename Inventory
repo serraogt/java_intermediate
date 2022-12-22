@@ -1,0 +1,76 @@
+public class Satchel<Mytype> {
+
+
+    Weapon top,front;
+    int capacity;
+    private Weapon[] arr;
+    // arr= new Weapon[capacity];
+
+
+    public Satchel(int capacity) {
+        this.top = null;
+        this.capacity = capacity;
+        arr = new Weapon[capacity];
+    }
+
+    public void push(String temp_name, int temp_dmg, int temp_price) {
+        Weapon temp = (Weapon) new Weapon();
+
+        if (temp == null) {
+            System.out.print("\nHeap Overflow");
+            return;
+        }
+        temp.name = temp_name;
+        temp.dmg = temp_dmg;
+        temp.price = temp_price;
+
+        if (top==null){top=temp; front=temp;}
+        else{top.next=temp;
+        top=temp;}
+
+    }
+
+  /*  public void pop(){
+        if (isEmpty()) {
+            System.out.println("STACK EMPTY");
+            System.exit(1);
+        }
+        return arr[top--];
+    }}*/
+
+    public void printStack() {
+
+        for (Weapon p=front; p.next!=null; p=front.next) {
+            System.out.print(p.price + ", ");
+        }
+    }
+
+}
+
+
+
+
+
+public class Weapon extends MyItem {
+    String name;
+    int dmg;
+    int price;
+    Weapon next;
+
+}
+
+
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+       //stack
+        Satchel<MyItem> stk = new Satchel<MyItem>(3);
+
+        stk.push("a",30,100);
+        stk.push("b",40,200);
+        stk.printStack();
+    }
+}
